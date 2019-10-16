@@ -8,6 +8,7 @@ public class SingleCustomer {
     private String firstName;
     private String lastName;
     private String fullName;
+    private String memberMessage;
     private LocalDate lastPayment;
     private boolean validMembership = false;
 
@@ -20,46 +21,42 @@ public class SingleCustomer {
         this.lastName = lastName;
         this.lastPayment = lastPayment;
         this.fullName = firstName + " " + lastName;
+        // Kolla om nuvarande datum är FÖRE lastPayment + ett år. Sätt då till true, annars false.
+        this.validMembership = LocalDate.now().isBefore(lastPayment.plusYears(1));
+        this.setMemberMessage(validMembership);
     }
 
+    // Setter
+    public String setMemberMessage(boolean validMembership) {
+        if(validMembership) {
+            return this.memberMessage = "-medlem-";
+        } else {
+            return this.memberMessage = "-före detta medlem-";
+        }
+    }
     // Getters
     public String getFullName() {
         return this.fullName;
     }
 
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
 
     public String getPersonNumber() {
         return this.personNumber;
     }
+//    public String getFirstName() {
+//        return this.firstName;
+//    }
+//
+//    public String getLastName() {
+//        return this.lastName;
+//    }
 
-
-    public LocalDate getLastPayment() {
-        return this.lastPayment;
-    }
-    
-    public boolean getValidMembership() {
-        LocalDate temp = lastPayment.plusYears(1);
-        validMembership = LocalDate.now().isBefore(temp);
-        return this.validMembership;
-    }
-
-    // TODO: 2019-10-16 Parsa datum snyggare till utskrift, viktigt! 
     // Override Objects toString metod.
     @Override
     public String toString() {
-        return("fullName: " + this.fullName + "\n" +
-                "firstName: " + this.firstName + "\n" +
-                "lastName: " + this.lastName + "\n" +
-                "personnummer: " + this.personNumber + "\n" +
-                "lastPayment: " + this.lastPayment + "\n" +
-                "validMembership: " + this.validMembership + "\n");
-
+        return("Namn: " + this.fullName + "\n" +
+                "Personnummer: " + this.personNumber + "\n" +
+                "Personen är " + this.memberMessage + "\n" +
+                "Senaste betalning: " + this.lastPayment + "\n");
     }
 }

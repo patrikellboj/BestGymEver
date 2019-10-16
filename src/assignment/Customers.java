@@ -30,6 +30,7 @@ public class Customers {
                 personNumber = scan.next().replace(",", "");
                 firstName = scan.next();
                 lastName = scan.next();
+                // Parsing LocalDate från en String
                 lastPayment = LocalDate.parse(scan.next());
                 listOfCustomers.add(new SingleCustomer(
                         personNumber,
@@ -40,7 +41,7 @@ public class Customers {
 //            System.out.println(listOfCustomers);
             //scan.close();
         } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException");
+            System.out.println("FileNotFoundException. Filen Hittades inte");
             e.printStackTrace();
         } catch (IOException e) {
             System.out.println("IOException");
@@ -56,12 +57,12 @@ public class Customers {
         SingleCustomer customer = null;
         // Loopa igenom alla kunder i listOfCustomers
         for (SingleCustomer i : listOfCustomers) {
-            // Kolla om något av kunderna har samma hela namn, förnamn, efternamn eller personnummer som input.
+            // Kolla om något av kunderna har samma namn eller personnummer som input.
             if (input.equalsIgnoreCase(i.getFullName()) ||
-                    input.equalsIgnoreCase(i.getFirstName()) ||
-                    input.equalsIgnoreCase(i.getLastName()) ||
+//                    input.equalsIgnoreCase(i.getFirstName()) ||
+//                    input.equalsIgnoreCase(i.getLastName()) ||
                     input.equalsIgnoreCase(i.getPersonNumber())) {
-                // Returnera den kund som vars hela namn, förnamn, efternamn eller personnummer matchar med input.
+                // Returnera den första kunden vars hela namn, förnamn, efternamn eller personnummer matchar med input.
                 return i;
             }
         }

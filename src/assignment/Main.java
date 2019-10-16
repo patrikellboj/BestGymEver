@@ -6,31 +6,38 @@ public class Main {
 
     public static void main(String[] args) {
         SingleCustomer customer;
-
         // Skapa en lista med alla kunder från textfilen med kunder
         Customers customers = new Customers();
 
-        // TODO: 2019-10-16 Lägg input i en while loop. Om du får något av felen så ska programmet på nytt
-        //  be användaren att skriva in något.
-        try {
-            String input = JOptionPane.showInputDialog("Mata in namn eller personnummer för att se om personen är medlem");
-            customer = customers.getCustomer(input);
-            System.out.println(customer.toString());
+        while (true) {
+            try {
+                String input = JOptionPane.showInputDialog(
+                        null,
+                        "Mata in namn eller personnummer för att se om personen är medlem",
+                        "Best Gym Ever!!",
+                        JOptionPane.QUESTION_MESSAGE);
+
+                if (input == null) {
+                    break;
+                }
+                input = input.replaceAll("\\s+", " ").trim();
+                // Kolla om kunden finns i systemet.
+                customer = customers.getCustomer(input);
+
+                String message = customer == null
+                        ? "Kunden " + input + " fanns inte i systemet och är därmed obehörig"
+                        : customer.toString();
+
+                JOptionPane.showMessageDialog(null, message);
+            } catch (NullPointerException e) {
+                System.out.println("NullPointerException");
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Exception");
+                e.printStackTrace();
+            }
         }
-        catch (NullPointerException e) {
-            System.out.println("NullPointerException");
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Exception");
-            e.printStackTrace();
-        }
-
-
-
-
-
-
-
-
     }
 }
+
+
