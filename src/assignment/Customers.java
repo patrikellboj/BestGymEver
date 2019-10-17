@@ -38,8 +38,6 @@ public class Customers {
                         lastName,
                         lastPayment));
             }
-//            System.out.println(listOfCustomers);
-            //scan.close();
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException. Filen Hittades inte");
             e.printStackTrace();
@@ -50,7 +48,6 @@ public class Customers {
             System.out.println("Exception");
             e.printStackTrace();
         }
-
     }
 
     public SingleCustomer getCustomer(String input) {

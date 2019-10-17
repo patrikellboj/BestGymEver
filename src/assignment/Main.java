@@ -24,11 +24,11 @@ public class Main {
                 // Kolla om kunden finns i systemet.
                 customer = customers.getCustomer(input);
 
-                String message = customer == null
-                        ? "Kunden " + input + " fanns inte i systemet och är därmed obehörig"
-                        : customer.toString();
-
-                JOptionPane.showMessageDialog(null, message);
+                if(customer == null) {
+                    JOptionPane.showMessageDialog(null, "Kunden " + input + " fanns inte i systemet och är därmed obehörig.");
+                } else {
+                    customer.isMember();
+                }
             } catch (NullPointerException e) {
                 System.out.println("NullPointerException");
                 e.printStackTrace();
