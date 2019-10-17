@@ -2,10 +2,8 @@ package assignment;
 
 import javax.swing.*;
 import java.io.*;
-import java.nio.channels.ScatteringByteChannel;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.time.LocalDate;
 
 public class SingleCustomer {
@@ -32,6 +30,10 @@ public class SingleCustomer {
     // Getters
     public String getFullName() {
         return this.fullName;
+    }
+
+    public boolean getValidMembership() {
+        return this.validMembership;
     }
 
     public String getPersonNumber() {
